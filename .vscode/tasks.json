@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Compilar Projeto C++",
+      "type": "shell",
+      "command": "C:/msys64/mingw64/bin/g++.exe",
+      "args": [
+        "-Wall",
+        "-Wextra",
+        "-g3",
+        "${workspaceFolder}/src/main.cpp",
+        "${workspaceFolder}/src/Locais.cpp",
+        "-o",
+        "${workspaceFolder}/src/output/Programa.exe"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/src"
+      }
+    }
+  ]
+}

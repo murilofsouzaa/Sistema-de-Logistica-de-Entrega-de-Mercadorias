@@ -2,7 +2,6 @@
 
 ## Desenvolvido por:
 - Bernardo Leão Braga  
-- Luiz Adriano Torres  
 - Murilo Freitas de Souza  
 
 ---
@@ -24,7 +23,7 @@ class Local {
   int y;        // Coordenada Y numérica
 }
 
-// Operações de Local
+// Operações CRUD da classe Local
 void criar(Local local);            // Cadastrar um novo local
 vector<Local> listar();             // Listar todos os locais cadastrados
 void atualizar(string nome, Local localAtualizado); // Atualizar local pelo nome
@@ -39,7 +38,7 @@ class Veiculo {
   Local localAtual;   // Referência ao local atual do veículo
 }
 
-// Operações de Veículo
+// Operações CRUD da classe Veículo
 void criar(Veiculo veiculo);              // Cadastrar um novo veículo
 vector<Veiculo> listar();                  // Listar todos os veículos cadastrados
 void atualizar(string placa, Veiculo veiculoAtualizado);  // Atualizar veículo pela placa
@@ -57,7 +56,7 @@ class Pedido {
   bool entregue;        // Indica se o pedido foi entregue
 }
 
-// Operações de Pedido
+// Operações CRUD da classe Pedido
 void criar(Pedido pedido);                // Cadastrar um novo pedido
 vector<Pedido> listar();                   // Listar todos os pedidos cadastrados
 void atualizar(int id, Pedido pedidoAtualizado);  // Atualizar pedido pelo ID
