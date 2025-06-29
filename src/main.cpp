@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include "./Locais/include/Local.hpp"
-#include "./Pedidos/src/include/Pedido.hpp"
+#include "./Pedidos/include/Pedido.hpp"
 
 using namespace std;
 
