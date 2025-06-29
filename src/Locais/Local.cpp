@@ -1,4 +1,4 @@
-#include "../include/Local.hpp"
+#include "include/Local.hpp"
 #include <iostream>
 
 #define MAX_LOCAIS 100
