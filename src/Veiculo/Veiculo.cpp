@@ -3,7 +3,7 @@
 #include <iostream>
 #include <vector>
 
-static std::vector<Veiculo> veiculos;
+std::vector<Veiculo> veiculos;
 
 Veiculo::Veiculo(std::string placa, std::string modelo, std::string status, std::string localAtual)
     : placa(placa), modelo(modelo), status(status), localAtual(localAtual) {}
