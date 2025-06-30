@@ -3,11 +3,11 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/src/Locais/include",
-                "${workspaceFolder}/src/Pedidos/include",
+                "${workspaceFolder}/src/Local/include",
+                "${workspaceFolder}/src/Pedido/include",
+                "${workspaceFolder}/src/Veiculo/include",
                 "${workspaceFolder}/**"
-                ]
-                ,
+            ],
             "defines": [],
             "compilerPath": "C:/msys64/mingw64/bin/g++.exe",
             "cStandard": "c11",
