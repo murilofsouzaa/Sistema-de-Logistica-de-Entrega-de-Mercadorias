@@ -1,19 +1,14 @@
 #include <iostream>
 #include <string>
-#include "./Locais/include/Local.hpp"
-#include "./Pedidos/src/include/Pedido.hpp"
+#include "./Local/include/Local.hpp"
+#include "./Pedido/include/Pedido.hpp"
+#include "./Veiculo/include/Veiculo.hpp"
 
 using namespace std;
 
 int proximoIdPedido = 1;
 
-int main(){
-
-    cout<<"Hello World!" << endl;
-
+int main() {
 
     return 0;
 }
-
-
-
