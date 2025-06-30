@@ -1,8 +1,10 @@
 #include <iostream>
 #include <string>
+#include <vector>
 #include "./Local/include/Local.hpp"
 #include "./Pedido/include/Pedido.hpp"
 #include "./Veiculo/include/Veiculo.hpp"
+#include "./Rota/include/Rota.hpp"
 
 using namespace std;
 
@@ -59,7 +61,18 @@ int main() {
     else
         cout << "Erro ao calcular distância: um dos locais não foi encontrado.\n";
 
-    // 6. Finalizar entrega
+    // 6. Teste do cálculo de rota de entrega
+    cout << "\n--- Cálculo de rota de entrega ---\n";
+    vector<string> locaisParaRota = {"Centro", "Bairro A", "Bairro B", "Bairro C"};
+    vector<string> rota = calcularRotaEntrega(locaisParaRota);
+
+    cout << "Rota calculada:\n";
+    for (const auto& local : rota) {
+        cout << local << " -> ";
+    }
+    cout << "Fim\n";
+
+    // 7. Finalizar entrega
     finalizarEntrega(1, "ABC1234");
     listarVeiculos();
 
