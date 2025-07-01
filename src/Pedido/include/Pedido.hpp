@@ -13,7 +13,11 @@ public:
     std::string placaVeiculo; // veículo associado
     bool entregue;            // status da entrega
 
+    // Construtor básico
     Pedido(int id, const std::string& origem, const std::string& destino, float peso);
+
+    // Construtor completo para recuperação dos dados
+    Pedido(int id, const std::string& origem, const std::string& destino, float peso, const std::string& placaVeiculo, bool entregue);
 };
 
 // CRUD
@@ -25,4 +29,4 @@ bool excluirPedido(int id);
 bool associarPedidoVeiculo(int idPedido, const std::string& placaVeiculo);
 bool finalizarEntrega(int idPedido, const std::string& placaVeiculo);
 
-#endif
+#endif // PEDIDO_HPP

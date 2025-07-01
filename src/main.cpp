@@ -3,7 +3,9 @@
 #include "./Menu/include/Menu.hpp"
 #include "./Veiculo/include/Veiculo.hpp"
 #include "./Local/include/Local.hpp"      
-#include "./Pedido/include/Pedido.hpp"    
+#include "./Pedido/include/Pedido.hpp"
+#include "./Backup/include/backupDados.hpp"
+#include "./Backup/include/recuperarDados.hpp"    
 
 using namespace std;
 

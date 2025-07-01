@@ -7,6 +7,7 @@
                 "${workspaceFolder}/src/Pedido/include",
                 "${workspaceFolder}/src/Menu/include",
                 "${workspaceFolder}/src/Veiculo/include",
+                "${workspaceFolder}/src/Backup/include",
                 "${workspaceFolder}/**"
             ],
             "defines": [],

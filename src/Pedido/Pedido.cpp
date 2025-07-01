@@ -3,10 +3,14 @@
 #include <iostream>
 #include <vector>
 
-static std::vector<Pedido> pedidos;
+// Definição da variável global pedidos (importante para linker)
+std::vector<Pedido> pedidos;
 
 Pedido::Pedido(int id, const std::string& origem, const std::string& destino, float peso)
     : id(id), nomeOrigem(origem), nomeDestino(destino), peso(peso), placaVeiculo(""), entregue(false) {}
+
+Pedido::Pedido(int id, const std::string& origem, const std::string& destino, float peso, const std::string& placaVeiculo, bool entregue)
+    : id(id), nomeOrigem(origem), nomeDestino(destino), peso(peso), placaVeiculo(placaVeiculo), entregue(entregue) {}
 
 bool cadastrarPedido(int id, const std::string& origem, const std::string& destino, float peso) {
     for (const Pedido& p : pedidos) {
@@ -65,13 +69,13 @@ bool excluirPedido(int id) {
 bool associarPedidoVeiculo(int idPedido, const std::string& placaVeiculo) {
     extern std::vector<Veiculo> veiculos;
     bool veiculoExiste = false;
-for (const Veiculo& v : veiculos) {
-    if (v.placa == placaVeiculo) {
-        veiculoExiste = true;
-        break;
+    for (const Veiculo& v : veiculos) {
+        if (v.placa == placaVeiculo) {
+            veiculoExiste = true;
+            break;
+        }
     }
-}
-if (!veiculoExiste) {
+    if (!veiculoExiste) {
         std::cout << "Veículo não encontrado.\n";
         return false;
     }
@@ -107,7 +111,6 @@ bool finalizarEntrega(int idPedido, const std::string& placaVeiculo) {
             }
             p.entregue = true;
 
-            
             for (Veiculo& v : veiculos) {
                 if (v.placa == placaVeiculo) {
                     v.status = "disponivel";

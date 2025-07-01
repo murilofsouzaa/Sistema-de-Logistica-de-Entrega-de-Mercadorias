@@ -4,8 +4,8 @@
 
 #define MAX_LOCAIS 100
 
-static Local locais[MAX_LOCAIS];
-static int qtdLocais = 0;
+Local locais[MAX_LOCAIS];
+int qtdLocais = 0;
 
 Local::Local() : nome(""), x(0), y(0) {}
 

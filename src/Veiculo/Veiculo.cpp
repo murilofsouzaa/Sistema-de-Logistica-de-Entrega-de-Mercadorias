@@ -1,7 +1,6 @@
 #include "include/Veiculo.hpp"
 #include <iostream>
 #include <vector>
-#include <fstream>
 #include <cmath>
 
 std::vector<Veiculo> veiculos;
@@ -60,70 +59,6 @@ bool excluirVeiculo(std::string placa) {
 
     std::cout << "Veículo não encontrado.\n";
     return false;
-}
-
-void backupDados() {
-    std::ofstream outFile("veiculos_backup.dat", std::ios::binary);
-    if (!outFile) return;
-
-    size_t tamanho = veiculos.size();
-    outFile.write(reinterpret_cast<char*>(&tamanho), sizeof(tamanho));
-    for (const Veiculo& v : veiculos) {
-        size_t tamPlaca = v.placa.size();
-        size_t tamModelo = v.modelo.size();
-        size_t tamStatus = v.status.size();
-        size_t tamLocal = v.localAtual.size();
-
-        outFile.write(reinterpret_cast<char*>(&tamPlaca), sizeof(tamPlaca));
-        outFile.write(v.placa.c_str(), tamPlaca);
-
-        outFile.write(reinterpret_cast<char*>(&tamModelo), sizeof(tamModelo));
-        outFile.write(v.modelo.c_str(), tamModelo);
-
-        outFile.write(reinterpret_cast<char*>(&tamStatus), sizeof(tamStatus));
-        outFile.write(v.status.c_str(), tamStatus);
-
-        outFile.write(reinterpret_cast<char*>(&tamLocal), sizeof(tamLocal));
-        outFile.write(v.localAtual.c_str(), tamLocal);
-    }
-
-    outFile.close();
-    std::cout << "Backup realizado com sucesso!\n";
-}
-
-void restaurarDados() {
-    std::ifstream inFile("veiculos_backup.dat", std::ios::binary);
-    if (!inFile) {
-        std::cout << "Arquivo de backup não encontrado.\n";
-        return;
-    }
-
-    veiculos.clear();
-    size_t tamanho;
-    inFile.read(reinterpret_cast<char*>(&tamanho), sizeof(tamanho));
-    for (size_t i = 0; i < tamanho; ++i) {
-        size_t tamPlaca, tamModelo, tamStatus, tamLocal;
-        inFile.read(reinterpret_cast<char*>(&tamPlaca), sizeof(tamPlaca));
-        std::string placa(tamPlaca, ' ');
-        inFile.read(&placa[0], tamPlaca);
-
-        inFile.read(reinterpret_cast<char*>(&tamModelo), sizeof(tamModelo));
-        std::string modelo(tamModelo, ' ');
-        inFile.read(&modelo[0], tamModelo);
-
-        inFile.read(reinterpret_cast<char*>(&tamStatus), sizeof(tamStatus));
-        std::string status(tamStatus, ' ');
-        inFile.read(&status[0], tamStatus);
-
-        inFile.read(reinterpret_cast<char*>(&tamLocal), sizeof(tamLocal));
-        std::string localAtual(tamLocal, ' ');
-        inFile.read(&localAtual[0], tamLocal);
-
-        veiculos.emplace_back(placa, modelo, status, localAtual);
-    }
-
-    inFile.close();
-    std::cout << "Dados restaurados com sucesso!\n";
 }
 
 std::string buscarVeiculoMaisProximo(float origemX, float origemY, const std::vector<std::string>& locais, const std::vector<std::pair<float, float>>& coordenadas) {
