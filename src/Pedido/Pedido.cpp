@@ -92,7 +92,7 @@ bool associarPedidoVeiculo(int idPedido, const std::string& placaVeiculo) {
             }
             p.placaVeiculo = placaVeiculo;
             p.entregue = false;
-            veiculoPtr->status = "ocupado";  // Atualiza status do veículo ao associar
+            veiculoPtr->status = "ocupado";
             std::cout << "Pedido associado ao veículo com sucesso!\n";
             return true;
         }
