@@ -5,7 +5,10 @@
             "includePath": [
                 "${workspaceFolder}/src/Local/include",
                 "${workspaceFolder}/src/Pedido/include",
+<<<<<<< HEAD
                 "${workspaceFolder}/src/Menu/include",
+=======
+>>>>>>> 8493f8090589309b510cfcbc785b3ff4795ee438
                 "${workspaceFolder}/src/Veiculo/include",
                 "${workspaceFolder}/**"
             ],
