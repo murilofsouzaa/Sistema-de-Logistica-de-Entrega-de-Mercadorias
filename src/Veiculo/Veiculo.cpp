@@ -4,7 +4,7 @@
 #include <fstream>
 #include <cmath>
 
-static std::vector<Veiculo> veiculos;
+std::vector<Veiculo> veiculos;
 
 Veiculo::Veiculo(std::string placa, std::string modelo, std::string status, std::string localAtual)
     : placa(placa), modelo(modelo), status(status), localAtual(localAtual) {}
@@ -131,7 +131,7 @@ std::string buscarVeiculoMaisProximo(float origemX, float origemY, const std::ve
     std::string placaMaisProxima = "";
 
     for (const Veiculo& v : veiculos) {
-        if (v.status != "disponível") continue;
+        if (v.status != "disponivel") continue;
 
         for (size_t i = 0; i < locais.size(); ++i) {
             if (locais[i] == v.localAtual) {

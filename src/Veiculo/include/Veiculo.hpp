@@ -2,6 +2,8 @@
 #define VEICULO_HPP
 
 #include <string>
+#include <vector>
+#include <utility>
 
 class Veiculo {
 public:
@@ -19,6 +21,7 @@ bool atualizarVeiculo(std::string placa, std::string novoModelo, std::string nov
 bool excluirVeiculo(std::string placa);
 void backupDados();
 void restaurarDados();
+
 std::string buscarVeiculoMaisProximo(float origemX, float origemY, const std::vector<std::string>& locais, const std::vector<std::pair<float, float>>& coordenadas);
 
 #endif
