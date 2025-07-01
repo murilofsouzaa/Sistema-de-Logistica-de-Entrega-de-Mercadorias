@@ -1,16 +1,19 @@
 #include "include/Pedido.hpp"
-#include "../Veiculo/include/Veiculo.hpp"  
+#include "../Veiculo/include/Veiculo.hpp"
+#include "../Local/include/Local.hpp" // Para buscar local e calcular distância
 #include <iostream>
 #include <vector>
+#include <cmath>
 
-// Definição da variável global pedidos (importante para linker)
 std::vector<Pedido> pedidos;
 
 Pedido::Pedido(int id, const std::string& origem, const std::string& destino, float peso)
     : id(id), nomeOrigem(origem), nomeDestino(destino), peso(peso), placaVeiculo(""), entregue(false) {}
 
-Pedido::Pedido(int id, const std::string& origem, const std::string& destino, float peso, const std::string& placaVeiculo, bool entregue)
-    : id(id), nomeOrigem(origem), nomeDestino(destino), peso(peso), placaVeiculo(placaVeiculo), entregue(entregue) {}
+Pedido::Pedido(int id, const std::string& origem, const std::string& destino, float peso,
+               const std::string& placaVeiculo, bool entregue)
+    : id(id), nomeOrigem(origem), nomeDestino(destino), peso(peso),
+      placaVeiculo(placaVeiculo), entregue(entregue) {}
 
 bool cadastrarPedido(int id, const std::string& origem, const std::string& destino, float peso) {
     for (const Pedido& p : pedidos) {
@@ -34,7 +37,7 @@ void listarPedidos() {
         std::cout << "ID: " << p.id
                   << " | Origem: " << p.nomeOrigem
                   << " | Destino: " << p.nomeDestino
-                  << " | Peso: " << p.peso << "kg"
+                  << " | Peso: " << p.peso << " kg"
                   << " | Veículo: " << (p.placaVeiculo.empty() ? "Nenhum" : p.placaVeiculo)
                   << " | Status: " << (p.entregue ? "Entregue" : "Pendente") << "\n";
     }
@@ -68,14 +71,15 @@ bool excluirPedido(int id) {
 
 bool associarPedidoVeiculo(int idPedido, const std::string& placaVeiculo) {
     extern std::vector<Veiculo> veiculos;
-    bool veiculoExiste = false;
-    for (const Veiculo& v : veiculos) {
+    Veiculo* veiculoPtr = nullptr;
+
+    for (Veiculo& v : veiculos) {
         if (v.placa == placaVeiculo) {
-            veiculoExiste = true;
+            veiculoPtr = &v;
             break;
         }
     }
-    if (!veiculoExiste) {
+    if (!veiculoPtr) {
         std::cout << "Veículo não encontrado.\n";
         return false;
     }
@@ -88,6 +92,7 @@ bool associarPedidoVeiculo(int idPedido, const std::string& placaVeiculo) {
             }
             p.placaVeiculo = placaVeiculo;
             p.entregue = false;
+            veiculoPtr->status = "ocupado";  // Atualiza status do veículo ao associar
             std::cout << "Pedido associado ao veículo com sucesso!\n";
             return true;
         }
@@ -97,7 +102,7 @@ bool associarPedidoVeiculo(int idPedido, const std::string& placaVeiculo) {
 }
 
 bool finalizarEntrega(int idPedido, const std::string& placaVeiculo) {
-    extern std::vector<Veiculo> veiculos; 
+    extern std::vector<Veiculo> veiculos;
 
     for (Pedido& p : pedidos) {
         if (p.id == idPedido) {
@@ -124,4 +129,29 @@ bool finalizarEntrega(int idPedido, const std::string& placaVeiculo) {
     }
     std::cout << "Pedido não encontrado.\n";
     return false;
+}
+
+void mostrarDistanciaPedido(int id) {
+    Pedido* pedidoEncontrado = nullptr;
+    for (Pedido& p : pedidos) {
+        if (p.id == id) {
+            pedidoEncontrado = &p;
+            break;
+        }
+    }
+    if (!pedidoEncontrado) {
+        std::cout << "Pedido não encontrado.\n";
+        return;
+    }
+
+    Local* origem = buscarLocalPorNome(pedidoEncontrado->nomeOrigem);
+    Local* destino = buscarLocalPorNome(pedidoEncontrado->nomeDestino);
+
+    if (!origem || !destino) {
+        std::cout << "Origem ou destino não encontrados.\n";
+        return;
+    }
+
+    float distancia = calcularDistanciaEntreLocais(*origem, *destino);
+    std::cout << "Distância entre origem e destino do pedido " << id << ": " << distancia << " unidades.\n";
 }

@@ -11,22 +11,22 @@ Veiculo::Veiculo(std::string placa, std::string modelo, std::string status, std:
 bool cadastrarVeiculo(std::string placa, std::string modelo, std::string status, std::string localAtual) {
     for (const Veiculo& v : veiculos) {
         if (v.placa == placa) {
-            std::cout << "Erro: já existe um veículo com essa placa.\n";
+            std::cout << "Erro: ja existe um veiculo com essa placa.\n";
             return false;
         }
     }
     veiculos.emplace_back(placa, modelo, status, localAtual);
-    std::cout << "Veículo cadastrado com sucesso!\n";
+    std::cout << "Veiculo cadastrado com sucesso!\n";
     return true;
 }
 
 void listarVeiculos() {
     if (veiculos.empty()) {
-        std::cout << "Nenhum veículo cadastrado.\n";
+        std::cout << "Nenhum veiculo cadastrado.\n";
         return;
     }
 
-    std::cout << "Lista de veículos:\n";
+    std::cout << "Lista de veiculos:\n";
     for (const Veiculo& v : veiculos) {
         std::cout << "Placa: " << v.placa << " | Modelo: " << v.modelo
                   << " | Status: " << v.status << " | Local Atual: " << v.localAtual << "\n";
@@ -39,12 +39,12 @@ bool atualizarVeiculo(std::string placa, std::string novoModelo, std::string nov
             v.modelo = novoModelo;
             v.status = novoStatus;
             v.localAtual = novoLocal;
-            std::cout << "Veículo atualizado com sucesso!\n";
+            std::cout << "Veiculo atualizado com sucesso!\n";
             return true;
         }
     }
 
-    std::cout << "Veículo não encontrado.\n";
+    std::cout << "Veiculo nao encontrado.\n";
     return false;
 }
 
@@ -52,12 +52,12 @@ bool excluirVeiculo(std::string placa) {
     for (auto it = veiculos.begin(); it != veiculos.end(); ++it) {
         if (it->placa == placa) {
             veiculos.erase(it);
-            std::cout << "Veículo excluído com sucesso!\n";
+            std::cout << "Veiculo excluido com sucesso!\n";
             return true;
         }
     }
 
-    std::cout << "Veículo não encontrado.\n";
+    std::cout << "Veiculo nao encontrado.\n";
     return false;
 }
 

@@ -1,6 +1,7 @@
 #ifndef PEDIDO_HPP
 #define PEDIDO_HPP
 
+
 #include <string>
 
 class Pedido {
@@ -10,13 +11,11 @@ public:
     std::string nomeDestino;
     float peso;
 
-    std::string placaVeiculo; // veículo associado
-    bool entregue;            // status da entrega
+    std::string placaVeiculo;
+    bool entregue;            
 
-    // Construtor básico
     Pedido(int id, const std::string& origem, const std::string& destino, float peso);
 
-    // Construtor completo para recuperação dos dados
     Pedido(int id, const std::string& origem, const std::string& destino, float peso, const std::string& placaVeiculo, bool entregue);
 };
 
@@ -27,6 +26,7 @@ bool atualizarPedido(int id, const std::string& novaOrigem, const std::string& n
 bool excluirPedido(int id);
 
 bool associarPedidoVeiculo(int idPedido, const std::string& placaVeiculo);
+void mostrarDistanciaPedido(int id);
 bool finalizarEntrega(int idPedido, const std::string& placaVeiculo);
 
-#endif // PEDIDO_HPP
+#endif

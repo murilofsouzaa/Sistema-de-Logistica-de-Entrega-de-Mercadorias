@@ -22,7 +22,7 @@ void escreverString(std::ofstream& out, const std::string& str) {
 void backupVeiculos() {
     std::ofstream outFile("veiculos_backup.dat", std::ios::binary);
     if (!outFile) {
-        std::cout << "Erro ao abrir arquivo de backup de veículos.\n";
+        std::cout << "Erro ao abrir arquivo de backup de veiculos.\n";
         return;
     }
 
@@ -37,7 +37,7 @@ void backupVeiculos() {
     }
 
     outFile.close();
-    std::cout << "Backup de veículos realizado com sucesso!\n";
+    std::cout << "Backup de veiculos realizado com sucesso!\n";
 }
 
 void backupLocais() {
@@ -89,3 +89,4 @@ void backupDados() {
     backupLocais();
     backupPedidos();
 }
+

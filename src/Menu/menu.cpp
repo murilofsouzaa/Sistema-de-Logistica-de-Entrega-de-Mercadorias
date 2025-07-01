@@ -57,11 +57,11 @@ void menuLocais() {
 void menuVeiculos() {
     int opcao;
     do {
-        cout << "\n--- CRUD de Veículos ---\n";
-        cout << "1 - Cadastrar veículo\n";
-        cout << "2 - Listar veículos\n";
-        cout << "3 - Atualizar veículo\n";
-        cout << "4 - Excluir veículo\n";
+        cout << "\n--- CRUD de Veiculos ---\n";
+        cout << "1 - Cadastrar veiculo\n";
+        cout << "2 - Listar veiculos\n";
+        cout << "3 - Atualizar veiculo\n";
+        cout << "4 - Excluir veiculo\n";
         cout << "0 - Voltar ao menu principal\n";
         cout << "Escolha: ";
         cin >> opcao;
@@ -116,7 +116,7 @@ void menuPedidos() {
         cout << "2 - Listar pedidos\n";
         cout << "3 - Atualizar pedido\n";
         cout << "4 - Excluir pedido\n";
-        cout << "5 - Associar pedido a veículo\n";
+        cout << "5 - Associar pedido a veiculo\n";
         cout << "6 - Finalizar entrega\n";
         cout << "0 - Voltar ao menu principal\n";
         cout << "Escolha: ";
@@ -161,7 +161,7 @@ void menuPedidos() {
                 cout << "ID do pedido: ";
                 cin >> id;
                 cin.ignore();
-                cout << "Placa do veículo: ";
+                cout << "Placa do veiculo: ";
                 getline(cin, placa);
                 associarPedidoVeiculo(id, placa);
                 break;
@@ -169,7 +169,7 @@ void menuPedidos() {
                 cout << "ID do pedido: ";
                 cin >> id;
                 cin.ignore();
-                cout << "Placa do veículo: ";
+                cout << "Placa do veiculo: ";
                 getline(cin, placa);
                 finalizarEntrega(id, placa);
                 break;

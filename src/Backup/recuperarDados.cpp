@@ -23,7 +23,7 @@ void lerString(std::ifstream& in, std::string& str) {
 void restaurarVeiculos() {
     std::ifstream inFile("veiculos_backup.dat", std::ios::binary);
     if (!inFile) {
-        std::cout << "Arquivo de backup de veículos não encontrado.\n";
+        std::cout << "Arquivo de backup de veiculos nao encontrado.\n";
         return;
     }
 
@@ -39,13 +39,13 @@ void restaurarVeiculos() {
         veiculos.emplace_back(placa, modelo, status, localAtual);
     }
     inFile.close();
-    std::cout << "Restauração de veículos concluída com sucesso!\n";
+    std::cout << "Restauracao de veiculos concluida com sucesso!\n";
 }
 
 void restaurarLocais() {
     std::ifstream inFile("locais_backup.dat", std::ios::binary);
     if (!inFile) {
-        std::cout << "Arquivo de backup de locais não encontrado.\n";
+        std::cout << "Arquivo de backup de locais nao encontrado.\n";
         return;
     }
 
@@ -59,13 +59,13 @@ void restaurarLocais() {
         locais[i] = Local(nome, x, y);
     }
     inFile.close();
-    std::cout << "Restauração de locais concluída com sucesso!\n";
+    std::cout << "Restauracao de locais concluida com sucesso!\n";
 }
 
 void restaurarPedidos() {
     std::ifstream inFile("pedidos_backup.dat", std::ios::binary);
     if (!inFile) {
-        std::cout << "Arquivo de backup de pedidos não encontrado.\n";
+        std::cout << "Arquivo de backup de pedidos nao encontrado.\n";
         return;
     }
 
@@ -88,7 +88,7 @@ void restaurarPedidos() {
         pedidos.emplace_back(id, nomeOrigem, nomeDestino, peso, placaVeiculo, entregue);
     }
     inFile.close();
-    std::cout << "Restauração de pedidos concluída com sucesso!\n";
+    std::cout << "Restauracao de pedidos concluida com sucesso!\n";
 }
 
 void restaurarDados() {
