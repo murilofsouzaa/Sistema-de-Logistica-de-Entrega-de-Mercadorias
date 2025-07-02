@@ -8,7 +8,7 @@ static MunitResult test_local_default_ctor(const MunitParameter params[], void* 
     munit_assert_string_equal(l.getNome().c_str(), "");
     munit_assert_float(l.getX(), ==, 0.0f);
     munit_assert_float(l.getY(), ==, 0.0f);
-    // Esperado: nome="", x=0.0, y=0.0
+    // Esperado: nome="", x = 0.0, y = 0.0
     return MUNIT_OK;
 }
 
@@ -18,7 +18,7 @@ static MunitResult test_local_param_ctor(const MunitParameter params[], void* da
     munit_assert_string_equal(l.getNome().c_str(), "A");
     munit_assert_float(l.getX(), ==, 1.5f);
     munit_assert_float(l.getY(), ==, 2.5f);
-    // Esperado: nome="A", x=1.5, y=2.5
+    // Esperado: nome= "A", x = 1.5, y = 2.5
     return MUNIT_OK;
 }
 
@@ -30,7 +30,7 @@ static MunitResult test_local_setters(const MunitParameter params[], void* data)
     munit_assert_string_equal(l.getNome().c_str(), "B");
     munit_assert_float(l.getX(), ==, 3.0f);
     munit_assert_float(l.getY(), ==, 4.0f);
-    // Esperado: nome="B", x=3.0, y=4.0
+    // Esperado: nome= "B", x = 3.0, y = 4.0
     return MUNIT_OK;
 }
 
@@ -40,7 +40,7 @@ static MunitResult test_local_distancia(const MunitParameter params[], void* dat
     Local l2("B", 3.0f, 4.0f);
     float d = calcularDistanciaEntreLocais(l1, l2);
     munit_assert_float(d, ==, 5.0f);
-    // Esperado: distancia=5.0
+    // Esperado: distancia = 5.0
     return MUNIT_OK;
 }
 
@@ -65,12 +65,11 @@ int main(int argc, char* argv[]) {
 }
 
 // Esperado ao rodar todos os testes:
-// [ OK    ] /local/default_ctor
-// [ OK    ] /local/param_ctor
-// [ OK    ] /local/setters
-// [ OK    ] /local/distancia
-// 4 of 4 (100%) tests successful, 0 (0%) test skipped.
+// [OK] /local/default_ctor
+// [OK] /local/param_ctor
+// [OK] /local/setters
+// [OK] /local/distancia
 
 //Utilize o seguinte comando para compilar e executar os testes: "g++ tests/automated_tests/local_test.cpp src/Local/Local.cpp tests/automated_tests/lib/munit.cpp -Itests/automated_tests/lib/include -Iinclude -o tests/automated_tests/local_test.exe"
 
-// Utilize o seguinte comando para executar os testes: "tests/automated_tests/local_test.exe"
+// Utilize o seguinte comando para executar os testes: "tests/automated_tests/local_test.exe" no terminal.
