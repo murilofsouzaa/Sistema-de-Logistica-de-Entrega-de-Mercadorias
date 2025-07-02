@@ -19,7 +19,6 @@ public:
     Pedido(int id, const std::string& origem, const std::string& destino, float peso, const std::string& placaVeiculo, bool entregue);
 };
 
-// CRUD
 bool cadastrarPedido(int id, const std::string& origem, const std::string& destino, float peso);
 void listarPedidos();
 bool atualizarPedido(int id, const std::string& novaOrigem, const std::string& novoDestino, float novoPeso);
