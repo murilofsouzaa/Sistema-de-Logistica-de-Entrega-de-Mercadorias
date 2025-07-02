@@ -12,7 +12,7 @@ int main() {
 
     l1.setNome("Farmacia");
     l1.setCoordenadas(3.0f, 4.0f);
-    std::cout << "Esperado: nome=Farmacia, x=3, y=4\n";
+    std::cout << "Esperado: nome = Farmacia, x = 3, y = 4\n";
     std::cout << "Obtido: " << l1.getNome() << ", x=" << l1.getX() << ", y=" << l1.getY() << "\n\n";
 
     std::cout << "Teste do metodo exibir:\n";
