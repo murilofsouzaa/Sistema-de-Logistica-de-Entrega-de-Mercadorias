@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../../Veiculo/include/Veiculo.hpp"
+#include "Veiculo.hpp"
 
 int main() {
     std::cout << "Cadastrando veiculo...\n";

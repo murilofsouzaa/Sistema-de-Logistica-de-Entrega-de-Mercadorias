@@ -1,6 +1,6 @@
-#include "include/Pedido.hpp"
-#include "../../../include/Veiculo.hpp"
-#include "../../../include/Local.hpp" // Para buscar local e calcular distância
+#include "Pedido.hpp"
+#include "Veiculo.hpp"
+#include "Local.hpp"
 #include <iostream>
 #include <vector>
 #include <cmath>

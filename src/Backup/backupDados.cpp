@@ -1,7 +1,7 @@
-#include ".../../../include/Veiculo.hpp"
-#include "../../../include/Local.hpp"
-#include "../../../include/Pedido.hpp"
-#include "include/backupDados.hpp"
+#include "Veiculo.hpp"
+#include "Local.hpp"
+#include "Pedido.hpp"
+#include "backupDados.hpp"
 
 #include <fstream>
 #include <iostream>

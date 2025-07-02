@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../../Local/include/Local.hpp"
+#include "Local.hpp"
 
 int main() {
     Local l1;

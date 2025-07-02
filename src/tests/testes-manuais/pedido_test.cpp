@@ -1,7 +1,7 @@
 #include <iostream>
-#include "../../Pedido/include/Pedido.hpp"
-#include "../../Veiculo/include/Veiculo.hpp"
-#include "../../Local/include/Local.hpp"
+#include "Pedido.hpp"
+#include "Veiculo.hpp"
+#include "Local.hpp"
 
 int main() {
     cadastrarLocal("Origem", 0.0f, 0.0f);

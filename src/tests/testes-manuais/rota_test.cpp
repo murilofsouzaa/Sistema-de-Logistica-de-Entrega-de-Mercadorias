@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
-#include "../../Rota/include/Rota.hpp"
-#include "../../Local/include/Local.hpp"
+#include "Rota.hpp"
+#include "Local.hpp"
 
 float distanciaEntreLocais(const std::string& nome1, const std::string& nome2);
 

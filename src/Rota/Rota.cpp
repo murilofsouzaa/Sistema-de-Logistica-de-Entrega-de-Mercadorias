@@ -1,5 +1,5 @@
-#include "./include/Rota.hpp"
-#include "../../../include/Local.hpp"
+#include "Rota.hpp"
+#include "Local.hpp"
 #include <iostream>
 #include <limits>
 #include <cmath>

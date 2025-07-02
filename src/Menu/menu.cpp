@@ -1,7 +1,7 @@
-#include "./include/Menu.hpp"
-#include "../../../include/Local.hpp"
-#include "../../../include/Veiculo.hpp"
-#include "../../../include/Pedido.hpp"
+#include "Menu.hpp"
+#include "Local.hpp"
+#include "Veiculo.hpp"
+#include "Pedido.hpp"
 #include <iostream>
 #include <string>
 
