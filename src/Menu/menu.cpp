@@ -118,6 +118,7 @@ void menuPedidos() {
         cout << "4 - Excluir pedido\n";
         cout << "5 - Associar pedido a veiculo\n";
         cout << "6 - Finalizar entrega\n";
+        cout << "    (Após a simulação da entrega, o status do veículo será alterado para 'disponível' e o local atualizado para o destino do pedido)\n";
         cout << "0 - Voltar ao menu principal\n";
         cout << "Escolha: ";
         cin >> opcao;
@@ -172,6 +173,7 @@ void menuPedidos() {
                 cout << "Placa do veiculo: ";
                 getline(cin, placa);
                 finalizarEntrega(id, placa);
+                cout << "Após a entrega, o status do veículo será 'disponível' e o local atualizado para o destino do pedido.\n";
                 break;
         }
     } while (opcao != 0);

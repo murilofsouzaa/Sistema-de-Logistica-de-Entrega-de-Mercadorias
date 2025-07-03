@@ -62,13 +62,13 @@ void calcularEExibirRotaEntrega() {
         }
     }
     if (!pedido) {
-        cout << "Pedido não encontrado ou já entregue.\n";
+        cout << "Pedido nao encontrado ou ja entregue.\n";
         return;
     }
 
     Veiculo* veiculo = veiculoMaisProximo(pedido->nomeOrigem);
     if (!veiculo) {
-        cout << "Nenhum veículo disponível para entrega.\n";
+        cout << "Nenhum veiculo disponivel para entrega.\n";
         return;
     }
 
@@ -77,7 +77,7 @@ void calcularEExibirRotaEntrega() {
     Local* localVeiculo = buscarLocalPorNome(veiculo->localAtual);
 
     if (!localOrigem || !localDestino || !localVeiculo) {
-        cout << "Erro ao localizar origem, destino ou veículo.\n";
+        cout << "Erro ao localizar origem, destino ou veiculo.\n";
         return;
     }
 
@@ -86,32 +86,31 @@ void calcularEExibirRotaEntrega() {
     float distTotal = distAteOrigem + distEntrega;
 
     cout << "\n--- Rota de Entrega ---\n";
-    cout << "Veículo selecionado: " << veiculo->placa << " (" << veiculo->modelo << ")\n";
-    cout << "Local atual do veículo: " << veiculo->localAtual << "\n";
+    cout << "Veiculo selecionado: " << veiculo->placa << " (" << veiculo->modelo << ")\n";
+    cout << "Local atual do veiculo: " << veiculo->localAtual << "\n";
     cout << "Origem do pedido: " << pedido->nomeOrigem << "\n";
     cout << "Destino do pedido: " << pedido->nomeDestino << "\n";
-    cout << "Distância até origem: " << distAteOrigem << "\n";
-    cout << "Distância da entrega: " << distEntrega << "\n";
-    cout << "Distância total percorrida: " << distTotal << "\n";
+    cout << "Distancia ate origem: " << distAteOrigem << "\n";
+    cout << "Distancia da entrega: " << distEntrega << "\n";
+    cout << "Distancia total percorrida: " << distTotal << "\n";
 
     cout << "\nSimular entrega? (S/N): ";
     char resp;
     cin >> resp;
     if (resp == 'S' || resp == 's') {
         veiculo->status = "ocupado";
-        cout << "Veículo agora está 'ocupado'. Entregando...\n";
+        cout << "Veiculo agora esta 'ocupado'. Entregando...\n";
 
         veiculo->status = "disponivel";
         veiculo->localAtual = pedido->nomeDestino;
         pedido->entregue = true;
         pedido->placaVeiculo = veiculo->placa;
-        cout << "Entrega concluída!\n";
-        cout << "Veículo agora está 'disponivel' em " << veiculo->localAtual << ".\n";
+        cout << "Entrega concluida!\n";
+        cout << "Veiculo agora esta 'disponivel' em " << veiculo->localAtual << ".\n";
     }
 }
 
 void inserirDadosTeste() {
-    
     cadastrarLocal("Centro", 0.0f, 0.0f);
     cadastrarLocal("Bairro A", 10.0f, 0.0f);
     cadastrarLocal("Bairro B", 0.0f, 10.0f);
