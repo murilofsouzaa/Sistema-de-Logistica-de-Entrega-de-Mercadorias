@@ -27,7 +27,6 @@ int main() {
     int opcao;
 
     // Inserir dados de teste automaticamente ao iniciar
-    inserirDadosTeste();
 
     do {
         cout << "\n===== MENU PRINCIPAL =====\n";

@@ -12,6 +12,12 @@ O sistema deverá simular o gerenciamento de pedidos, veículos e locais, com fo
 
 ---
 
+## Vídeo (Pitch)
+
+Segue o link para a demonstração -> https://youtu.be/2iX6lFmHXf4
+
+---
+
 ## Especificação das Entidades e Operações
 
 ### 1. Cadastro de Locais
