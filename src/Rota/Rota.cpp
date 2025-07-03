@@ -4,7 +4,6 @@
 #include <limits>
 #include <cmath>
 
-
 float distanciaEntreLocais(const std::string& nome1, const std::string& nome2) {
     return calcularDistanciaEntreLocaisPorNome(nome1, nome2);
 }
@@ -15,7 +14,6 @@ std::vector<std::string> calcularRotaEntrega(const std::vector<std::string>& nom
     std::vector<std::string> rota;
     std::vector<bool> visitado(nomesLocais.size(), false);
 
-   
     int atual = 0;
     rota.push_back(nomesLocais[atual]);
     visitado[atual] = true;
@@ -34,7 +32,7 @@ std::vector<std::string> calcularRotaEntrega(const std::vector<std::string>& nom
             }
         }
 
-        if (proximo == -1) break; 
+        if (proximo == -1) break;
 
         rota.push_back(nomesLocais[proximo]);
         visitado[proximo] = true;

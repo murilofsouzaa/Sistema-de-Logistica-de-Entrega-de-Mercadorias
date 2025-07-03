@@ -18,7 +18,7 @@ Pedido::Pedido(int id, const std::string& origem, const std::string& destino, fl
 bool cadastrarPedido(int id, const std::string& origem, const std::string& destino, float peso) {
     for (const Pedido& p : pedidos) {
         if (p.id == id) {
-            std::cout << "Erro: já existe um pedido com esse ID.\n";
+            std::cout << "Erro: ja existe um pedido com esse ID.\n";
             return false;
         }
     }
@@ -38,7 +38,7 @@ void listarPedidos() {
                   << " | Origem: " << p.nomeOrigem
                   << " | Destino: " << p.nomeDestino
                   << " | Peso: " << p.peso << " kg"
-                  << " | Veículo: " << (p.placaVeiculo.empty() ? "Nenhum" : p.placaVeiculo)
+                  << " | Veiculo: " << (p.placaVeiculo.empty() ? "Nenhum" : p.placaVeiculo)
                   << " | Status: " << (p.entregue ? "Entregue" : "Pendente") << "\n";
     }
 }
@@ -53,7 +53,7 @@ bool atualizarPedido(int id, const std::string& novaOrigem, const std::string& n
             return true;
         }
     }
-    std::cout << "Pedido não encontrado.\n";
+    std::cout << "Pedido nao encontrado.\n";
     return false;
 }
 
@@ -61,11 +61,11 @@ bool excluirPedido(int id) {
     for (auto it = pedidos.begin(); it != pedidos.end(); ++it) {
         if (it->id == id) {
             pedidos.erase(it);
-            std::cout << "Pedido excluído com sucesso!\n";
+            std::cout << "Pedido excluido com sucesso!\n";
             return true;
         }
     }
-    std::cout << "Pedido não encontrado.\n";
+    std::cout << "Pedido nao encontrado.\n";
     return false;
 }
 
@@ -80,24 +80,24 @@ bool associarPedidoVeiculo(int idPedido, const std::string& placaVeiculo) {
         }
     }
     if (!veiculoPtr) {
-        std::cout << "Veículo não encontrado.\n";
+        std::cout << "Veiculo nao encontrado.\n";
         return false;
     }
 
     for (Pedido& p : pedidos) {
         if (p.id == idPedido) {
             if (!p.placaVeiculo.empty()) {
-                std::cout << "Pedido já está associado a um veículo.\n";
+                std::cout << "Pedido ja esta associado a um veiculo.\n";
                 return false;
             }
             p.placaVeiculo = placaVeiculo;
             p.entregue = false;
             veiculoPtr->status = "ocupado";
-            std::cout << "Pedido associado ao veículo com sucesso!\n";
+            std::cout << "Pedido associado ao veiculo com sucesso!\n";
             return true;
         }
     }
-    std::cout << "Pedido não encontrado.\n";
+    std::cout << "Pedido nao encontrado.\n";
     return false;
 }
 
@@ -107,11 +107,11 @@ bool finalizarEntrega(int idPedido, const std::string& placaVeiculo) {
     for (Pedido& p : pedidos) {
         if (p.id == idPedido) {
             if (p.placaVeiculo != placaVeiculo) {
-                std::cout << "Pedido não está associado a esse veículo.\n";
+                std::cout << "Pedido nao esta associado a esse veiculo.\n";
                 return false;
             }
             if (p.entregue) {
-                std::cout << "Entrega já finalizada.\n";
+                std::cout << "Entrega ja finalizada.\n";
                 return false;
             }
             p.entregue = true;
@@ -127,7 +127,7 @@ bool finalizarEntrega(int idPedido, const std::string& placaVeiculo) {
             return true;
         }
     }
-    std::cout << "Pedido não encontrado.\n";
+    std::cout << "Pedido nao encontrado.\n";
     return false;
 }
 
@@ -140,7 +140,7 @@ void mostrarDistanciaPedido(int id) {
         }
     }
     if (!pedidoEncontrado) {
-        std::cout << "Pedido não encontrado.\n";
+        std::cout << "Pedido nao encontrado.\n";
         return;
     }
 
@@ -148,10 +148,10 @@ void mostrarDistanciaPedido(int id) {
     Local* destino = buscarLocalPorNome(pedidoEncontrado->nomeDestino);
 
     if (!origem || !destino) {
-        std::cout << "Origem ou destino não encontrados.\n";
+        std::cout << "Origem ou destino nao encontrados.\n";
         return;
     }
 
     float distancia = calcularDistanciaEntreLocais(*origem, *destino);
-    std::cout << "Distância entre origem e destino do pedido " << id << ": " << distancia << " unidades.\n";
+    std::cout << "Distancia entre origem e destino do pedido " << id << ": " << distancia << " unidades.\n";
 }
