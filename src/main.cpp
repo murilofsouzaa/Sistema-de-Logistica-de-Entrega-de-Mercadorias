@@ -2,8 +2,113 @@
 #include <locale>
 #include "Menu.hpp"
 #include "Veiculo.hpp"
-#include "Local.hpp"      
+#include "Local.hpp"
 #include "Pedido.hpp"
+#include <vector>
+#include <limits>
+#include <cmath>
+
+using namespace std;
+
+Veiculo* veiculoMaisProximo(const std::string& origem) {
+    extern std::vector<Veiculo> veiculos;
+    extern Local locais[];
+    extern int qtdLocais;
+
+    Local* localOrigem = buscarLocalPorNome(origem);
+    if (!localOrigem) return nullptr;
+
+    Veiculo* veiculoProx = nullptr;
+    float minDist = std::numeric_limits<float>::max();
+
+    for (Veiculo& v : veiculos) {
+        if (v.status == "disponivel") {
+            Local* localV = buscarLocalPorNome(v.localAtual);
+            if (localV) {
+                float dist = calcularDistanciaEntreLocais(*localOrigem, *localV);
+                if (dist < minDist) {
+                    minDist = dist;
+                    veiculoProx = &v;
+                }
+            }
+        }
+    }
+    return veiculoProx;
+}
+
+void calcularEExibirRotaEntrega() {
+    extern std::vector<Pedido> pedidos;
+    if (pedidos.empty()) {
+        cout << "Nenhum pedido cadastrado.\n";
+        return;
+    }
+
+    cout << "Pedidos pendentes:\n";
+    for (const Pedido& p : pedidos) {
+        if (!p.entregue) {
+            cout << "ID: " << p.id << " | Origem: " << p.nomeOrigem << " | Destino: " << p.nomeDestino << " | Peso: " << p.peso << "kg\n";
+        }
+    }
+
+    int idPedido;
+    cout << "Digite o ID do pedido para calcular a rota: ";
+    cin >> idPedido;
+
+    Pedido* pedido = nullptr;
+    for (Pedido& p : pedidos) {
+        if (p.id == idPedido && !p.entregue) {
+            pedido = &p;
+            break;
+        }
+    }
+    if (!pedido) {
+        cout << "Pedido não encontrado ou já entregue.\n";
+        return;
+    }
+
+    Veiculo* veiculo = veiculoMaisProximo(pedido->nomeOrigem);
+    if (!veiculo) {
+        cout << "Nenhum veículo disponível para entrega.\n";
+        return;
+    }
+
+    Local* localOrigem = buscarLocalPorNome(pedido->nomeOrigem);
+    Local* localDestino = buscarLocalPorNome(pedido->nomeDestino);
+    Local* localVeiculo = buscarLocalPorNome(veiculo->localAtual);
+
+    if (!localOrigem || !localDestino || !localVeiculo) {
+        cout << "Erro ao localizar origem, destino ou veículo.\n";
+        return;
+    }
+
+    float distAteOrigem = calcularDistanciaEntreLocais(*localVeiculo, *localOrigem);
+    float distEntrega = calcularDistanciaEntreLocais(*localOrigem, *localDestino);
+    float distTotal = distAteOrigem + distEntrega;
+
+    cout << "\n--- Rota de Entrega ---\n";
+    cout << "Veículo selecionado: " << veiculo->placa << " (" << veiculo->modelo << ")\n";
+    cout << "Local atual do veículo: " << veiculo->localAtual << "\n";
+    cout << "Origem do pedido: " << pedido->nomeOrigem << "\n";
+    cout << "Destino do pedido: " << pedido->nomeDestino << "\n";
+    cout << "Distância até origem: " << distAteOrigem << "\n";
+    cout << "Distância da entrega: " << distEntrega << "\n";
+    cout << "Distância total percorrida: " << distTotal << "\n";
+
+    cout << "\nSimular entrega? (S/N): ";
+    char resp;
+    cin >> resp;
+    if (resp == 'S' || resp == 's') {
+        veiculo->status = "ocupado";
+        cout << "Veículo agora está 'ocupado'. Entregando...\n";
+
+        veiculo->status = "disponivel";
+        veiculo->localAtual = pedido->nomeDestino;
+        pedido->entregue = true;
+        pedido->placaVeiculo = veiculo->placa;
+        cout << "Entrega concluída!\n";
+        cout << "Veículo agora está 'disponivel' em " << veiculo->localAtual << ".\n";
+    }
+}
 
 void inserirDadosTeste() {
     
@@ -19,22 +124,21 @@ void inserirDadosTeste() {
     cadastrarPedido(3, "Centro", "Bairro B", 2.5f);
 }
 
-using namespace std;
-
 int main() {
     std::setlocale(LC_ALL, "");
 
     int opcao;
 
-    // Inserir dados de teste automaticamente ao iniciar
+    inserirDadosTeste();
 
     do {
         cout << "\n===== MENU PRINCIPAL =====\n";
         cout << "1 - Gerenciar Locais\n";
         cout << "2 - Gerenciar Veiculos\n";
         cout << "3 - Gerenciar Pedidos\n";
-        cout << "4 - Fazer Backup dos Dados\n";
-        cout << "5 - Restaurar Dados do Backup\n";
+        cout << "4 - Calcular e Exibir Rota de Entrega\n";
+        cout << "5 - Fazer Backup dos Dados\n";
+        cout << "6 - Restaurar Dados do Backup\n";
         cout << "0 - Sair\n";
         cout << "Escolha: ";
         cin >> opcao;
@@ -50,9 +154,12 @@ int main() {
                 menuPedidos();
                 break;
             case 4:
-                backupDados();
+                calcularEExibirRotaEntrega();
                 break;
             case 5:
+                backupDados();
+                break;
+            case 6:
                 restaurarDados();
                 break;
             case 0:
